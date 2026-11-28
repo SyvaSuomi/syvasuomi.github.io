@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Syvä Suomi — magnetotelluric survey of Finland: field progress map.">
+<meta name="color-scheme" content="light">
+<title>Syvä Suomi</title>
+<link rel="icon" href="shared/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#ffffff">
+<link rel="apple-touch-icon" href="shared/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="shared/styles.css">
+</head>
+<body>
+<div id="map" role="application" data-i18n-attr="aria-label:ui.map"></div>
+<div class="banner" id="demo" hidden data-i18n="ui.demo"></div>
+<div class="offline" id="offline" hidden role="status"></div>
+
+<div class="topbar">
+  <div class="searchbox" role="search">
+    <button type="button" class="icon-btn" id="menu" aria-controls="side" aria-expanded="false" data-i18n-attr="aria-label:ui.menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <input type="search" id="f-search" autocomplete="off" data-i18n-attr="placeholder:ui.search;aria-label:ui.search">
+  </div>
+  <div class="chips" id="legend" role="group" data-i18n-attr="aria-label:ui.legend_hint"></div>
+  <div class="summary" id="summary"></div>
+</div>
+<a class="btn embed-link" href="./" target="_blank" rel="noopener" data-i18n="ui.embed_more">Open the full map</a>
+
+<div class="scrim" id="scrim"></div>
+<aside class="side" id="side" aria-labelledby="title">
+  <div class="side-head">
+    <div class="titles">
+      <h1 id="title">Syvä Suomi</h1>
+      <div class="sub"><span id="subtitle"></span><br><span id="updated"></span></div>
+    </div>
+    <button type="button" class="icon-btn" id="side-close" data-i18n-attr="aria-label:ui.close">
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav class="lang" aria-label="Language / Kieli / Språk">
+    <button type="button" data-lang="fi" lang="fi" aria-pressed="false">Suomi</button>
+    <button type="button" data-lang="sv" lang="sv" aria-pressed="false">Svenska</button>
+    <button type="button" data-lang="en" lang="en" aria-pressed="false">English</button>
+  </nav>
+
+  <div class="side-body" id="side-main">
+    <section aria-label="KPI"><div class="kpis" id="kpis"></div></section>
+    <section class="layers no-print" aria-labelledby="layers-h"><h2 id="layers-h" data-i18n="ui.layers">Layers</h2><div id="layers"></div></section>
+    <section aria-labelledby="charts-h">
+      <h2 id="charts-h" data-i18n="ui.charts">Progress</h2>
+      <h3 data-i18n="ui.chart_cum"></h3><div class="chart" id="chart-cum"></div>
+      <h3 data-i18n="ui.chart_monthly"></h3><div class="chart" id="chart-monthly"></div>
+    </section>
+    <section class="recent" aria-labelledby="recent-h"><h2 id="recent-h" data-i18n="ui.recent"></h2><ul class="plain" id="recent-list"></ul></section>
+    <section id="list-section" aria-labelledby="table-h">
+      <h2 id="table-h" data-i18n="ui.table">Sites</h2>
+      <div class="dates no-print">
+        <label><span data-i18n="ui.date_from"></span><input type="date" id="f-from"></label>
+        <label><span data-i18n="ui.date_to"></span><input type="date" id="f-to"></label>
+        <button type="button" class="btn" id="f-reset" data-i18n="ui.reset"></button>
+      </div>
+      <div class="sortbar no-print" id="sortbar"></div>
+      <p class="count" id="count" aria-live="polite"></p>
+      <ul class="plain site-list" id="site-list"></ul>
+      <button type="button" class="btn more" id="more" hidden></button>
+    </section>
+  </div>
+  <div class="side-body" id="side-detail" hidden></div>
+</aside>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Site" hidden>
+  <div class="grab"><button type="button" class="icon-btn close" data-i18n-attr="aria-label:ui.close">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
+  <div id="sheet-body"></div>
+</div>
+
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="shared/config.js"></script>
+<script src="shared/i18n.js"></script>
+<script src="shared/charts.js"></script>
+<script src="shared/core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
